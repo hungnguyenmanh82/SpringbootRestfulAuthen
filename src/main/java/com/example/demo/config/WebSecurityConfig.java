@@ -33,6 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
+    	// Spring đang dùng Http Basic Authentication theo chuẩn của Http (đã test)
+    	// nhưng phần setting Spring ko chỉ ra như vậy, nhìn quá phức tạp => tupid Springboot
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
@@ -40,7 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
          
-        String password = "123";
+        // Spring đang dùng Http Basic Authentication theo chuẩn của Http (đã test)
+    	// nhưng phần setting Spring ko chỉ ra như vậy, nhìn quá phức tạp => tupid Springboot
+    	String password = "123";  
  
         String encrytedPassword = this.passwordEncoder().encode(password);
         System.out.println("Encoded password of 123=" + encrytedPassword);
